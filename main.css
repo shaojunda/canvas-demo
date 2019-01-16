@@ -1,0 +1,12 @@
+#canvas {
+  background: green;
+  display: block;
+}
+
+* {margin: 0}
+
+button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
