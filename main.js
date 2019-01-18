@@ -2,12 +2,19 @@ var canvas = document.getElementById('canvas')
 
 var context = canvas.getContext('2d');
 
-resetCanvas()
+var eraserEnabled = false
 
-window.onresize = function() {
-  resetCanvas()
+autoSetCanvasSize(canvas)
+
+eraser.onclick = function() {
+  eraserEnabled = true
+  actions.className = 'actions x'
 }
 
+brush.onclick = function() {
+  eraserEnabled = false
+  actions.className = 'actions'
+}
 
 function drawCircle(x, y, radius) {
   context.beginPath()
@@ -60,15 +67,17 @@ function drawLine(x1, y1, x2, y2) {
   context.closePath()
 }
 
-function resetCanvas() {
-  var pageWidth = document.documentElement.clientWidth;
-  var pageHeight = document.documentElement.clientHeight;
+function autoSetCanvasSize(canvas) {
+  setCanvasSize()
+  window.onresize = function() {
+    setCanvasSize()
+  }
 
-  canvas.width = pageWidth
-  canvas.height = pageHeight
-}
+  function setCanvasSize() {
+    var pageWidth = document.documentElement.clientWidth;
+    var pageHeight = document.documentElement.clientHeight;
 
-var eraserEnabled = false
-eraser.onclick = function() {
-  eraserEnabled = !eraserEnabled
+    canvas.width = pageWidth
+    canvas.height = pageHeight
+  }
 }
