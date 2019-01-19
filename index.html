@@ -5,14 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no, maximum-scale=1, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./main.css">
+  <style type="text/css">
+    .icon {
+       width: 1em; height: 1em;
+       vertical-align: -0.15em;
+       fill: currentColor;
+       overflow: hidden;
+    }
+  </style>
   <title>我的画板</title>
 </head>
 <body>
   <canvas id="canvas" width=300 height=300></canvas>
   <div id="actions" class="actions">
-    <button id="eraser">橡皮擦</button>
-    <button id="brush">画笔</button>
+    <svg class="icon active" id="pen">
+      <use xlink:href="#icon-pen"></use>
+    </svg>
+    <svg class="icon" id="eraser">
+      <use xlink:href="#icon-Eraser-Tool"></use>
+    </svg>
   </div>
+  <ol class="colors">
+    <li id="black" class="black active"></li>
+    <li id="red" class="red"></li>
+    <li id="green" class="green"></li>
+    <li id="blue" class="blue"></li>
+  </ol>
 </body>
 <script src="./main.js"></script>
+<script src="//at.alicdn.com/t/font_1023227_uzohhpd5wdj.js"></script>
 </html>

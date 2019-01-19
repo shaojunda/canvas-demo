@@ -1,23 +1,66 @@
+* { margin: 0; padding: 0; }
 #canvas {
-  background: green;
   display: block;
 }
 
 * {margin: 0}
 
+body {
+  overflow: hidden;
+}
+
 .actions{
   position: fixed;
-  bottom: 0;
+  padding: 20px;
+  top: 0;
   left: 0;
 }
-.actions > #brush{
-  display: none;
+
+.actions svg {
+  width: 1.5em;
+  height: 1.5em;
+  transition: all 0.2s;
+  margin: 0 10px;
 }
 
-.actions.x > #brush{
-  display: inline-block;
+.actions svg.active {
+  fill: red;
+  transform: scale(1.2);
 }
 
-.actions.x > #eraser{
-  display: none
+.colors {
+  position: fixed;
+  top: 50px;
+  left: 10px;
+  list-style: none;
+}
+
+.colors > li {
+  margin: 20px 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0,0,0,0.25);
+  transition: all 0.3s;
+}
+
+.colors > li.red {
+  background: red;
+}
+
+.colors > li.black {
+  background: black;
+}
+
+.colors > li.green {
+  background: green;
+}
+
+.colors > li.blue {
+  background: blue;
+}
+
+.colors > li.active {
+  box-shadow: 0 0 3px rgba(0,0,0,0.95);
+  transform: scale(1.2);
 }
