@@ -1,3 +1,4 @@
+document.addEventListener('touchmove', function(e){e.preventDefault()}, false);
 var canvas = document.getElementById('canvas')
 
 var context = canvas.getContext('2d');
@@ -71,6 +72,7 @@ save.onclick = function() {
   document.body.appendChild(a)
   a.href = url
   a.download = Date.now()
+  a.target = "_blank"
   a.click()
 }
 
