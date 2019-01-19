@@ -13,7 +13,7 @@ body {
   position: fixed;
   padding: 20px;
   top: 0;
-  left: 0;
+  left: 16px;
 }
 
 .actions svg {
@@ -63,4 +63,30 @@ body {
 .colors > li.active {
   box-shadow: 0 0 3px rgba(0,0,0,0.95);
   transform: scale(1.2);
+}
+
+.sizes {
+  position: fixed;
+  right: 10px;
+  top: 45px;
+  list-style: none;
+}
+
+.sizes > .thin {
+  height: 6px;
+  width: 6px;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: black;
+  margin: 0 10px;
+}
+
+.sizes > .thick {
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: black
 }

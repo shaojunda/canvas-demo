@@ -4,7 +4,17 @@ var context = canvas.getContext('2d');
 
 var eraserEnabled = false
 
+var lineWidth = 3
+
 autoSetCanvasSize(canvas)
+
+thin.onclick = function() {
+  lineWidth = 3
+}
+
+thick.onclick = function() {
+  lineWidth = 6
+}
 
 red.onclick = function() {
   context.fillStyle = "red"
@@ -51,6 +61,19 @@ pen.onclick = function() {
   eraser.classList.remove("active")
 }
 
+clear.onclick = function() {
+  context.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+save.onclick = function() {
+  var url = canvas.toDataURL("image/png")
+  var a = document.createElement("a")
+  document.body.appendChild(a)
+  a.href = url
+  a.download = Date.now()
+  a.click()
+}
+
 function drawCircle(x, y, radius) {
   context.beginPath()
   context.arc(x, y, radius, 0, Math.PI*2)
@@ -68,10 +91,10 @@ if(document.body.ontouchstart !== undefined) {
     var y = event.touches[0].clientY
 
     if(eraserEnabled) {
-      context.clearRect(x-5, y-5, 20, 20)
+      context.clearRect(x-5, y-5, lineWidth * 1.5, lineWidth * 1.5)
     } else {
       lastPoint = { x: x, y: y }
-      drawCircle(x, y, 5)
+      drawCircle(x, y, lineWidth)
     }
   }
 
@@ -81,9 +104,9 @@ if(document.body.ontouchstart !== undefined) {
       var y = event.touches[0].clientY
       var newPoint = {x: x, y: y}
       if(eraserEnabled) {
-        context.clearRect(x-5, y-5, 20, 20)
+        context.clearRect(x-5, y-5, lineWidth * 1.5, lineWidth * 1.5)
       }else {
-        drawCircle(x, y, 5)
+        drawCircle(x, y, lineWidth)
         drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
         lastPoint = newPoint
       }
@@ -100,10 +123,10 @@ if(document.body.ontouchstart !== undefined) {
     var y = event.clientY
 
     if(eraserEnabled) {
-      context.clearRect(x-5, y-5, 10, 10)
+      context.clearRect(x-5, y-5, lineWidth * 1.5, lineWidth * 1.5)
     } else {
       lastPoint = { x: x, y: y }
-      drawCircle(x, y, 1)
+      drawCircle(x, y, lineWidth)
     }
   }
 
@@ -113,9 +136,9 @@ if(document.body.ontouchstart !== undefined) {
       var y = event.clientY
       var newPoint = {x: x, y: y}
       if(eraserEnabled) {
-        context.clearRect(x-5, y-5, 10, 10)
+        context.clearRect(x-5, y-5, lineWidth * 1.5, lineWidth * 1.5)
       }else {
-        drawCircle(x, y, 5)
+        drawCircle(x, y, lineWidth)
         drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
         lastPoint = newPoint
       }
@@ -131,7 +154,7 @@ if(document.body.ontouchstart !== undefined) {
 function drawLine(x1, y1, x2, y2) {
   context.beginPath()
   context.moveTo(x1, y1)
-  context.lineWidth = 10
+  context.lineWidth = lineWidth * 2
   context.lineTo(x2, y2)
   context.stroke()
   context.closePath()
