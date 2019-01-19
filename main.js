@@ -6,14 +6,49 @@ var eraserEnabled = false
 
 autoSetCanvasSize(canvas)
 
-eraser.onclick = function() {
-  eraserEnabled = true
-  actions.className = 'actions x'
+red.onclick = function() {
+  context.fillStyle = "red"
+  context.strokeStyle = "red"
+  red.classList.add("active")
+  green.classList.remove("active")
+  blue.classList.remove("active")
+  black.classList.remove("active")
+}
+black.onclick = function() {
+  context.fillStyle = "black"
+  context.strokeStyle = "black"
+  black.classList.add("active")
+  green.classList.remove("active")
+  blue.classList.remove("active")
+  red.classList.remove("active")
+}
+green.onclick = function() {
+  context.fillStyle = "green"
+  context.strokeStyle = "green"
+  green.classList.add("active")
+  black.classList.remove("active")
+  blue.classList.remove("active")
+  red.classList.remove("active")
+}
+blue.onclick = function() {
+  context.fillStyle = "blue"
+  context.strokeStyle = "blue"
+  blue.classList.add("active")
+  green.classList.remove("active")
+  black.classList.remove("active")
+  red.classList.remove("active")
 }
 
-brush.onclick = function() {
+eraser.onclick = function() {
+  eraserEnabled = true
+  eraser.classList.add("active")
+  pen.classList.remove("active")
+}
+
+pen.onclick = function() {
   eraserEnabled = false
-  actions.className = 'actions'
+  pen.classList.add("active")
+  eraser.classList.remove("active")
 }
 
 function drawCircle(x, y, radius) {
@@ -33,10 +68,10 @@ if(document.body.ontouchstart !== undefined) {
     var y = event.touches[0].clientY
 
     if(eraserEnabled) {
-      context.clearRect(x-5, y-5, 10, 10)
+      context.clearRect(x-5, y-5, 20, 20)
     } else {
       lastPoint = { x: x, y: y }
-      drawCircle(x, y, 1)
+      drawCircle(x, y, 5)
     }
   }
 
@@ -46,7 +81,7 @@ if(document.body.ontouchstart !== undefined) {
       var y = event.touches[0].clientY
       var newPoint = {x: x, y: y}
       if(eraserEnabled) {
-        context.clearRect(x-5, y-5, 10, 10)
+        context.clearRect(x-5, y-5, 20, 20)
       }else {
         drawCircle(x, y, 5)
         drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
